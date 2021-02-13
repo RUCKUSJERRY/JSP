@@ -1,72 +1,73 @@
-<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.myboard.biz.MyBoardBizImpl"%>
+<%@page import="com.myboard.biz.MyBoardBiz"%>
 <%@page import="com.myboard.dao.MyBoardDao"%>
 <%@page import="com.myboard.dto.MyBoardDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<% request.setCharacterEncoding("UTF-8");%>
-<% response.setContentType("text/html; charset=UTF-8");%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<% response.setContentType("text/html;charset=UTF-8"); %>
     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style type="text/css">
+	
+	table {
+		text-align:center;
+	}
+
+</style>
+
 </head>
 <body>
 
 <%
-
-	MyBoardDao dao = new MyBoardDao();
-	List<MyBoardDto> list = dao.selectList();
-
-
+	//interface biz = new 얘의 자식();
+	MyBoardBiz biz = new MyBoardBizImpl();
+	List<MyBoardDto> list = biz.selectList();
+	
+	
 %>
 
-	<h1>글 전체 보기</h1>
 	
-	<table border="1"> 
+	<h1>게시판</h1>
+	
+	<table border="1">
 		<col width="50px">
 		<col width="100px">
-		<col width="300px">
+		<col width="200px">
 		<col width="100px">
 		<tr>
-			<th>번호</th>
-			<th>작성자</th>
-			<th>제목</th>
-			<th>작성일</th>
-		
+			<td>번호</td>	
+			<td>작성자</td>
+			<td>제목</td>
+			<td>날짜</td>	
 		</tr>
-	<%	
-		/*	
-			<% 는 java code영역
-			<%= 는 java 코드를 html로 넘겨주겠다.
-		*/
-	
-	
-		for (int i = 0; i < list.size(); i++){
-	%>		
+	<%
+		for (MyBoardDto dto : list) {
+	%>	
 		<tr>
-			<td><%=list.get(i).getMyno() %></td>
-			<td><%=list.get(i).getMyname() %></td>
-			<td><a href="./myselect.jsp?myno=<%=list.get(i).getMyno() %>"><%=list.get(i).getMytitle() %></a></td>
-			<td><%=list.get(i).getDate() %></td>
-			
-		</tr>		
+			<td><%=dto.getSeq() %></td>		
+			<td><%=dto.getWriter() %></td>		
+			<td><a href="myselect.jsp?myno=<%=dto.getSeq() %>"><%=dto.getTitle() %></a></td>		
+			<td><%=dto.getRegdate() %></td>
+		</tr>
 	
 	<%	
 		}
 	%>
-		<tr>
+		<tr>  
 			<td colspan="4" align="right">
-				<button onclick="location.href='./myinsert.jsp'">글쓰기</button>
+			<input type="button" value="글쓰기" onclick="location.href='myinsert.jsp'">
 			</td>
-		
 		</tr>
-		
-		
+	
 	</table>
-
-
+	
 </body>
 </html>

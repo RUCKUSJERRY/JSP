@@ -1,65 +1,61 @@
 package com.myboard.dto;
-import java.util.Date;
 
-// db 안에 있는 row 하나를 저장해서 전달(전송)
+import java.sql.Date;
+
 public class MyBoardDto {
-
-	private int myno;
-	private String myname;
-	private String mytitle;
-	private String mycontent;
-	private Date date;
+	
+	private int seq;
+	private String writer;
+	private String title;
+	private String content;
+	private Date regdate;
 	
 	public MyBoardDto() {
 		
 	}
 	
-	public MyBoardDto(int myno, String myname, String mytitle, String mycontent, String date) {
+	public MyBoardDto(int seq, String writer, String title, String content, Date regdate) {
 		
 	}
 
-	public int getMyno() {
-		return myno;
+	public int getSeq() {
+		return seq;
 	}
 
-	public void setMyno(int myno) {
-		this.myno = myno;
+	public void setSeq(int seq) {
+		this.seq = seq;
 	}
 
-	public String getMyname() {
-		return myname;
+	public String getWriter() {
+		return writer;
 	}
 
-	public void setMyname(String myname) {
-		this.myname = myname;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 
-	public String getMytitle() {
-		return mytitle;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setMytitle(String mytitle) {
-		this.mytitle = mytitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getMycontent() {
-		return mycontent;
+	public String getContent() {
+		return content;
 	}
 
-	public void setMycontent(String mycontent) {
-		this.mycontent = mycontent;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getRegdate() {
+		return regdate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
 	}
-	
-	
-	
-
 	
 }

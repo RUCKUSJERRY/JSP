@@ -1,4 +1,4 @@
-package com.myboard.db;
+package com.board.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,18 +10,18 @@ public class JDBCTemplate {
 
 	public static Connection getConnection() {
 		
-		//1 driver 연결
-		
 		try {
+		// 1 . driver 연결
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("1. 드라이버 연결");
+
 		} catch (ClassNotFoundException e) {
 			
 			e.printStackTrace();
 		}
+			
+		// 2 . 계정 연결
 		
-		//2 계정연결
-		String url ="jdbc:oracle:thin:@localhost:1521:xe";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "kh";
 		String password = "kh";
 		
@@ -30,74 +30,68 @@ public class JDBCTemplate {
 		try {
 			con = DriverManager.getConnection(url, user, password);
 			con.setAutoCommit(false);
-			System.out.println("2. 계정 연결");
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
 		}
 		
 		return con;
+		
 	}
 	
-	public static boolean isConnection(Connection con) {
-		
-		boolean valid = true;
+	public static void close(Connection con) {
 		
 		try {
-			if (con == null || con.isClosed()) {
-				valid = false;
-			}
+			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return valid;
+		
 	}
 	
 	public static void close(ResultSet rs) {
+		
 		try {
 			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public static void close(Statement stmt) {
+		
 		try {
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public static void close(Connection con) {
-		if (isConnection(con)) {
-			try {
-				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		
 	}
 	
 	public static void commit(Connection con) {
-		if (isConnection(con)) {
-			try {
-				con.commit();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		
+		try {
+			con.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		
 	}
 	
 	public static void rollback(Connection con) {
-		if (isConnection(con)) {
+		
 			try {
 				con.rollback();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
 	}
+	
+	
+	
+
+	
+	
 	
 }
