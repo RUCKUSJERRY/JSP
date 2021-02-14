@@ -1,7 +1,4 @@
-<%@page import="com.myboard.biz.MyBoardBizImpl"%>
-<%@page import="com.myboard.biz.MyBoardBiz"%>
 <%@page import="com.myboard.dao.MyBoardDao"%>
-<%@page import="com.myboard.dao.MyBoardDaoImpl"%>
 <%@page import="com.myboard.dto.MyBoardDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -27,10 +24,9 @@
 <body>
 
 <%
-	//interface biz = new 얘의 자식();
-	MyBoardBiz biz = new MyBoardBizImpl();
-	MyBoardDao dao = new MyBoardDaoImpl();
-	List<MyBoardDto> list = biz.selectList();
+	MyBoardDao dao = new MyBoardDao();
+	List<MyBoardDto> list = dao.selectList();
+
 	
 %>
 	

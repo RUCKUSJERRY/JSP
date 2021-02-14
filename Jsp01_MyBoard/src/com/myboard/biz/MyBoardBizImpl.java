@@ -16,8 +16,8 @@ public class MyBoardBizImpl implements MyBoardBiz {
 	}
 
 	@Override
-	public MyBoardDto selectOne(MyBoardDto dto) {
-		return dao.selectOne(dto);
+	public MyBoardDto selectOne(int seq) {
+		return dao.selectOne(seq);
 	}
 
 	@Override
@@ -26,8 +26,8 @@ public class MyBoardBizImpl implements MyBoardBiz {
 	}
 
 	@Override
-	public int update(int seq) {		
-		return dao.update(seq);
+	public int update(MyBoardDto dto) {		
+		return dao.update(dto);
 	}
 
 	@Override

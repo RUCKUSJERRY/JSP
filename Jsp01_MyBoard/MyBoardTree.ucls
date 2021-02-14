@@ -59,8 +59,8 @@
   </package>  
   <class id="9" language="java" name="com.myboard.dto.MyBoardDto" project="Jsp01_MyBoard" 
     file="/Jsp01_MyBoard/src/com/myboard/dto/MyBoardDto.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="369" width="222" x="41" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    <position height="369" width="223" x="41" y="37"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -88,7 +88,9 @@
       <attribute id="14" name="dao">        
         <position height="18" width="26" x="577" y="215"/>      
       </attribute>      
-      <multiplicity id="15" minimum="0" maximum="1"/>    
+      <multiplicity id="15" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  

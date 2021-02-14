@@ -9,11 +9,13 @@ import java.util.List;
 import static com.board.db.JDBCTemplate.*;
 import com.myboard.dto.MyBoardDto;
 
-public class MyBoardDaoImpl implements MyBoardDao {
+public class MyBoardDao {
 
-	@Override
 	public List<MyBoardDto> selectList() {
 		Connection con = getConnection();
+		
+		String sql = " SELECT SEQ, WRITER, TITLE, CONTENT, REGDATE "
+	               + " FROM MYBOARD ";
 		
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
@@ -22,7 +24,7 @@ public class MyBoardDaoImpl implements MyBoardDao {
 		
 		try {
 			
-			pstm = con.prepareStatement(SELECT_LIST_SQL);
+			pstm = con.prepareStatement(sql);
 			// 3. query 준비
 			System.out.println("3. query 준비");
 			rs = pstm.executeQuery();
@@ -55,18 +57,24 @@ public class MyBoardDaoImpl implements MyBoardDao {
 		return list;
 	}
 
-	@Override
 	public MyBoardDto selectOne(int seq) {
 		
-		Connection con = getConnection();	
+		Connection con = getConnection();
+		
+		String sql = " SELECT SEQ, WRITER, TITLE, CONTENT, REGDATE "
+				  + " FROM MYBOARD "
+			      + " WHERE SEQ = ? ";
+		
 		PreparedStatement pstm = null;
 		ResultSet rs = null;		
 		MyBoardDto temp = new MyBoardDto();
 		
 		try {
-			pstm = con.prepareStatement(SELECT_ONE_SQL);
+			pstm = con.prepareStatement(sql);
 			pstm.setInt(1, seq);
 			rs = pstm.executeQuery();
+			
+			
 			
 			while(rs.next()) {
 
@@ -95,95 +103,19 @@ public class MyBoardDaoImpl implements MyBoardDao {
 		return temp;
 	}
 
-	@Override
 	public int insert(MyBoardDto dto) {
 		Connection con = getConnection();
-		
-		PreparedStatement pstm = null;
-		int res = 0;
-		
-		try {
-			
-			pstm = con.prepareStatement(INSERT_SQL);
-			pstm.setString(1, dto.getWriter());
-			pstm.setString(2, dto.getTitle());
-			pstm.setString(3, dto.getContent());
-			
-			res = pstm.executeUpdate();
-			
-			if (res > 0) {
-				commit(con);
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			close(pstm);
-			close(con);
-		}
-		
-		return res;
+		return 0;
 	}
 
-	@Override
-	public int update(MyBoardDto dto) {
-		
+	public int update(int seq) {
 		Connection con = getConnection();
-		
-		PreparedStatement pstm = null;
-		int res = 0;
-		try {
-			pstm = con.prepareStatement(UPDATE_SQL);
-			pstm.setString(1, dto.getWriter());
-			pstm.setString(2, dto.getTitle());	
-			pstm.setString(3, dto.getContent());
-			pstm.setInt(4, dto.getSeq());
-			
-			res = pstm.executeUpdate();
-			
-			if (res > 0) {
-				commit(con);
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			close(pstm);
-			close(con);
-		}
-		
-		
-		
-		return res;
+		return 0;
 	}
 
-	@Override
 	public int delete(int seq) {
 		Connection con = getConnection();
-		PreparedStatement pstm = null;
-		int res = 0;
-		
-		try {
-			pstm = con.prepareStatement(DELETE_SQL);
-			pstm.setInt(1, seq);
-			res = pstm.executeUpdate();
-			
-			if (res > 0) {
-				commit(con);
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			close(pstm);
-			close(con);
-		}
-		
-		
-		return res;
+		return 0;
 	}
 
 }

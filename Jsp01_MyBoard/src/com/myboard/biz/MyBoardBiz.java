@@ -6,9 +6,9 @@ import com.myboard.dto.MyBoardDto;
 public interface MyBoardBiz {
 	
 	public List<MyBoardDto> selectList();
-	public MyBoardDto selectOne(MyBoardDto dto);
+	public MyBoardDto selectOne(int seq);
 	public int insert(MyBoardDto dto);
-	public int update(int seq);
+	public int update(MyBoardDto dto);
 	public int delete(int seq);
 	
 }
