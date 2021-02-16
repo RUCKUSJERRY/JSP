@@ -1,4 +1,4 @@
-package com.myboard.dao;
+package com.muldel.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,104 +6,94 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import static com.board.db.JDBCTemplate.*;
-import com.myboard.dto.MyBoardDto;
+import static com.muldel.db.JDBCTemplate.*;
+import com.muldel.dto.MDBoardDto;
 
-public class MyBoardDaoImpl implements MyBoardDao {
+public class MDBoardDaoImpl implements MDBoardDao {
 
 	@Override
-	public List<MyBoardDto> selectList() {
+	public List<MDBoardDto> selectList() {
+		
 		Connection con = getConnection();
-		
-		PreparedStatement pstm = null;
 		ResultSet rs = null;
+		PreparedStatement pstm = null;
 		
-		List<MyBoardDto> list = new ArrayList<MyBoardDto>();
+		List<MDBoardDto> list = new ArrayList<MDBoardDto>();
 		
 		try {
-			
 			pstm = con.prepareStatement(SELECT_LIST_SQL);
-			// 3. query 준비
-			System.out.println("3. query 준비");
 			rs = pstm.executeQuery();
-			
+			System.out.println("3. query 준비" + SELECT_LIST_SQL);
 			while(rs.next()) {
-				// 4. 쿼리 실행 및 리턴
-				MyBoardDto dto = new MyBoardDto();
-				System.out.println("4. 쿼리 실행 및 리턴");
+				MDBoardDto dto = new MDBoardDto();
 				dto.setSeq(rs.getInt(1));
 				dto.setWriter(rs.getString(2));
 				dto.setTitle(rs.getString(3));
 				dto.setContent(rs.getString(4));
 				dto.setRegdate(rs.getDate(5));
-
-				list.add(dto);
 				
+				list.add(dto);
+				System.out.println("4. query 실행 및 리턴");
 			}
-			
 			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 		} finally {
-			// 5. db 종료
-			close(rs);
 			close(pstm);
+			close(rs);
 			close(con);
-			System.out.println("5. db 종료");
+			System.out.println("5. db  종료");
 		}
+		
 		return list;
 	}
 
 	@Override
-	public MyBoardDto selectOne(int seq) {
+	public MDBoardDto selectOne(int seq) {
 		
-		Connection con = getConnection();	
+		Connection con = getConnection();
+		ResultSet rs = null;
 		PreparedStatement pstm = null;
-		ResultSet rs = null;		
-		MyBoardDto temp = new MyBoardDto();
-		
+		MDBoardDto dto = new MDBoardDto();
 		try {
 			pstm = con.prepareStatement(SELECT_ONE_SQL);
 			pstm.setInt(1, seq);
 			rs = pstm.executeQuery();
-			
+			System.out.println("3. query 준비" + SELECT_ONE_SQL);
 			while(rs.next()) {
-
-				temp.setSeq(rs.getInt(1));
-				temp.setWriter(rs.getString(2));
-				temp.setTitle(rs.getString(3));
-				temp.setContent(rs.getString(4));
-				temp.setRegdate(rs.getDate(5));
 				
+				dto.setSeq(rs.getInt(1));
+				dto.setWriter(rs.getString(2));
+				dto.setTitle(rs.getString(3));
+				dto.setContent(rs.getString(4));
+				dto.setRegdate(rs.getDate(5));
+				
+				System.out.println("4. query 실행 및 리턴");
 			}
-			
-			
-			
 			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
-			
 		} finally {
-			close(rs);
 			close(pstm);
+			close(rs);
 			close(con);
+			System.out.println("5. db  종료");
 		}
 		
-		
-		return temp;
+		return dto;
 	}
 
 	@Override
-	public int insert(MyBoardDto dto) {
-		Connection con = getConnection();
+	public int insert(MDBoardDto dto) {
 		
+		Connection con = getConnection();
 		PreparedStatement pstm = null;
 		int res = 0;
 		
 		try {
-			
+			System.out.println("3. query 준비" + INSERT_SQL);
 			pstm = con.prepareStatement(INSERT_SQL);
 			pstm.setString(1, dto.getWriter());
 			pstm.setString(2, dto.getTitle());
@@ -112,49 +102,50 @@ public class MyBoardDaoImpl implements MyBoardDao {
 			res = pstm.executeUpdate();
 			
 			if (res > 0) {
+				System.out.println("4. query 실행 및 리턴");
 				commit(con);
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} finally {
 			close(pstm);
 			close(con);
+			System.out.println("5. db  종료");
 		}
 		
 		return res;
 	}
 
 	@Override
-	public int update(MyBoardDto dto) {
-		
+	public int update(MDBoardDto dto) {
 		Connection con = getConnection();
-		
 		PreparedStatement pstm = null;
 		int res = 0;
+		
 		try {
+			System.out.println("3. query 준비" + UPDATE_SQL);
 			pstm = con.prepareStatement(UPDATE_SQL);
-			pstm.setString(1, dto.getWriter());
-			pstm.setString(2, dto.getTitle());	
-			pstm.setString(3, dto.getContent());
-			pstm.setInt(4, dto.getSeq());
-			
+			pstm.setString(1, dto.getTitle());
+			pstm.setString(2, dto.getContent());
+			pstm.setInt(3, dto.getSeq());
 			res = pstm.executeUpdate();
 			
 			if (res > 0) {
+				System.out.println("4. query 실행 및 리턴");
 				commit(con);
 			}
 			
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} finally {
 			close(pstm);
 			close(con);
+			System.out.println("5. db  종료");
 		}
-		
-		
 		
 		return res;
 	}
@@ -166,24 +157,34 @@ public class MyBoardDaoImpl implements MyBoardDao {
 		int res = 0;
 		
 		try {
+			System.out.println("3. query 준비" + DELETE_SQL);
 			pstm = con.prepareStatement(DELETE_SQL);
 			pstm.setInt(1, seq);
+			
 			res = pstm.executeUpdate();
 			
 			if (res > 0) {
+				System.out.println("4. query 실행 및 리턴");
 				commit(con);
 			}
 			
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} finally {
 			close(pstm);
 			close(con);
+			System.out.println("5. db  종료");
 		}
 		
 		
 		return res;
+	}
+	
+	@Override
+	public int multiDelete(String[] seq) {
+		return 0;
 	}
 
 }

@@ -49,6 +49,9 @@
 		<td>글번호</td><td><%=seq %></td>
 	</tr>
 	<tr>
+		<td>작성일자</td><td><%=dto.getRegdate() %></td>
+	</tr>
+	<tr>
 		<td>작성자</td><td><%=dto.getWriter() %></td>
 	</tr>
 	<tr>

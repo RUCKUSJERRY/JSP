@@ -29,7 +29,6 @@
 <%
 	//interface biz = new 얘의 자식();
 	MyBoardBiz biz = new MyBoardBizImpl();
-	MyBoardDao dao = new MyBoardDaoImpl();
 	List<MyBoardDto> list = biz.selectList();
 	
 %>
