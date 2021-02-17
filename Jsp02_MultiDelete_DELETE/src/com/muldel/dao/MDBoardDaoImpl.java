@@ -146,10 +146,10 @@ public class MDBoardDaoImpl implements MDBoardDao {
 			close(con);
 			System.out.println("5. db  종료");
 		}
-		
+
 		return res;
 	}
-
+	
 	@Override
 	public int delete(int seq) {
 		Connection con = getConnection();
@@ -184,7 +184,49 @@ public class MDBoardDaoImpl implements MDBoardDao {
 	
 	@Override
 	public int multiDelete(String[] seq) {
-		return 0;
+		
+		Connection con = getConnection();
+		PreparedStatement pstm = null;
+		int res = 0;
+		
+		int[] cnt = null;
+		
+			try {
+				pstm = con.prepareStatement(DELETE_SQL);
+				
+				for (int i = 0; i < seq.length; i++) {
+				
+					pstm.setString(1, seq[i]);
+					// 메모리에 적재해놓고, executeBatch() 메소드가 호출 될 때, 한번에 실행!!
+					pstm.addBatch();
+					System.out.println("3. query 준비 " + DELETE_SQL + "(삭제할 번호 : " + seq[i] + ")");
+				}
+				// 메모리에 적재 되어있는 sql문들을 한번에 실행!
+				// 리턴 타입은 int[] 로 리턴됨!
+				cnt = pstm.executeBatch();
+				System.out.println("4. query 실행 및 리턴");
+				
+				// -2 : 성공, -3 : 실패
+				for (int i = 0; i < cnt.length; i++) {
+					if (cnt[i] == -2) {
+						res++;
+					}
+				}
+				
+				// 갯수 확인
+				if(seq.length == res) {
+					commit(con);
+				}
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			} finally {
+				close(pstm);
+				close(con);
+			}
+
+		return res;
 	}
 
 }

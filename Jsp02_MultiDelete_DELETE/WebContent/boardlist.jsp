@@ -1,3 +1,5 @@
+<%@page import="com.muldel.dao.MDBoardDaoImpl"%>
+<%@page import="com.muldel.dao.MDBoardDao"%>
 <%@page import="com.muldel.dto.MDBoardDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.muldel.biz.MDBoardBizImpl"%>
@@ -13,9 +15,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		//muldelform이라는 아이디를 가진 태그에서 submit이벤트가 발생시 실행해주세요.
+		$("#muldelform").submit(function(){
+			// 유효성 검사
+			if ($("#muldelform input:checked").length == 0) {
+				alert("하나 이상 체크해 주세요");
+				return false;
+			}
+		});
+	});
+	
+	
+	
+
+</script>
+
+
+
 </head>
 <%
-
+	
+	//MDBoardDao biz = new MDBoardDaoImpl();
 	MDBoardBiz biz = new MDBoardBizImpl();
 	List<MDBoardDto> list = biz.selectList();
 	
