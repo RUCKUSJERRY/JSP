@@ -15,7 +15,6 @@
 
 <%
 	MYMemberDto dto = (MYMemberDto) session.getAttribute("dto");
-
 %>
 
 	<div>

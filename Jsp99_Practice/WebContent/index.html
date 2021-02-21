@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<h1>TEST WORLD</h1>
+	
+	<form action="./logincon.jsp" method="post">
+		<input type="hidden" name="command" value="login">
+		<table border="1">
+			<col width="100px"> 
+			<col width="200px"> 
+			<tr>
+				<th>ID</th>
+				<td><input type="text" name="id"></td>	
+			</tr>
+			<tr>
+				<th>PW</th>
+				<td><input type="password" name="pw"></td>	
+			</tr>
+			<tr>
+				<td colspan="2" align="right">
+					<input type="submit" value="로그인">
+					<input type="button" value="회원가입" onclick="location.href='./logincon.jsp?command=create'">
+				</td>	
+			</tr>
+			
+		</table>
+	</form>
+
+</body>
+</html>
