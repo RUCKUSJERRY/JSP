@@ -47,7 +47,6 @@
 			alert("로그인 실패")
 			location.href="index.html"
 		</script>
-
 <%
 		}
 		

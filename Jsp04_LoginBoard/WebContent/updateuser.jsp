@@ -21,8 +21,6 @@
 	
 	<h1>마이페이지</h1>
 	
-
-	
 	<form action="logincontroller.jsp" method="post">
 		<input type="hidden" name="command" value="updateuser" />
 		<input type="hidden" name="myno" value="<%=dto.getMyno() %>" />
