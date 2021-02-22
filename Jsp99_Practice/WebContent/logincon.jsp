@@ -51,6 +51,9 @@
 	<%
 			}
 			
+		} else if (command.equals("logout")) {
+			session.invalidate();
+			response.sendRedirect("index.html");
 		}
 	%>	
 		

@@ -1,7 +1,9 @@
 package com.login.dto;
 
-public class MYMemberDto {
+import java.util.Arrays;
 
+public class MYMemberDto {
+	
 	private int myno;
 	private String myid;
 	private String mypw;
@@ -15,7 +17,7 @@ public class MYMemberDto {
 	public MYMemberDto() {
 		
 	}
-
+	
 	public MYMemberDto(int myno, String myid, String mypw, String myname, String myaddr, String myphone, String myemail,
 			String myenabled, String myrole) {
 		this.myno = myno;
@@ -32,7 +34,7 @@ public class MYMemberDto {
 	public int getMyno() {
 		return myno;
 	}
-
+	
 	public void setMyno(int myno) {
 		this.myno = myno;
 	}

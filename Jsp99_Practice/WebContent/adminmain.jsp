@@ -37,17 +37,21 @@
 		position: relative;
 		witdh: 100px;
 		height: 30px;
-		border: 1px solid black;
 		vertical-align: middle;
 		text-align: center;
-		background-color: black;
 		color: white;
-		cursor: pointer;
 	
 	}
 	
-	nav span:hover {
+	nav span input:hover {
 		text-decoration: underline;
+		cursor: pointer;
+	}
+	
+	nav span input {
+		witdh: 100px;
+		background-color: black;
+		color: white;
 		cursor: pointer;
 	}
 	
@@ -74,7 +78,7 @@
 		<span><input type="button" value ="게시판" onclick="location.href='boardcon.jsp?command=board'"></span>
 		<span><input type="button" value ="회원관리" onclick="location.href='boardcon.jsp?command=userboard'"></span>
 		<span><input type="button" value ="마이페이지" onclick="location.href='boardcon.jsp?command=mypage'"></span>
-		<span><input type="button" value ="로그아웃" onclick="location.href='boardcon.jsp?command=logout'"></span>
+		<span><input type="button" value ="로그아웃" onclick="location.href='logincon.jsp?command=logout'"></span>
 	</nav>
 	
 	

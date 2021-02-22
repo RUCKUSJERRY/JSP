@@ -110,10 +110,10 @@
 	<h2><%=dto.getName() %> (<%=dto.getId() %>) 님 어서오세요</h2>
 	
 	<nav>
-		<span><input type="button" value ="게시판" onclick="board();"></span>
-		<span><input type="button" value ="회원찾기" onclick="user();"></span>
-		<span><input type="button" value ="마이페이지" onclick="mypage();"></span>
-		<span><input type="button" value ="로그아웃" onclick="logout();"></span>
+		<span><input type="button" value ="게시판" onclick="location.href='boardcon.jsp?command=board'"></span>
+		<span><input type="button" value ="회원관리" onclick="location.href='boardcon.jsp?command=userboard'"></span>
+		<span><input type="button" value ="마이페이지" onclick="location.href='boardcon.jsp?command=mypage'"></span>
+		<span><input type="button" value ="로그아웃" onclick="location.href='logincon.jsp?command=logout'"></span>
 	</nav>
 	
 	<table border="1">

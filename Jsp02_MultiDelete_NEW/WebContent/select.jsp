@@ -30,10 +30,8 @@
 	
 	function delcon() {
 		var con = confirm("정말 삭제하시겠습니까?")
-		
 		if (con) {
-			
-			location.href='./delete.jsp?seq=<%=seq %>'		
+			location.href='./delete.jsp?seq=<%=seq %>';	
 		} 
 		
 	}
