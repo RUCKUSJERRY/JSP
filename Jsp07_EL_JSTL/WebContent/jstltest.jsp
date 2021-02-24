@@ -74,8 +74,25 @@
 	
 		${i }<br/>
 	
-	
 	</c:forEach>
+	
+	<table border="1">
+		<tr>
+			<th>구구단</th>
+			<td colspan="9" align="center">값</td>		
+		</tr>
+	<c:forEach var="i" begin="2" end="9" step="1">
+		<tr>
+			<th>${i }단</th>
+			<c:forEach var="j" begin="1" end="9" step="1">
+			<td>${i } x ${j } = ${i * j}</td>	
+			</c:forEach>
+		</tr>
+			
+	</c:forEach>	
+	
+	</table>
+	
 
 </body>
 </html>
