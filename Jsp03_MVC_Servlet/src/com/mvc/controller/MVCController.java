@@ -17,6 +17,12 @@ import com.mvc.dto.MVCDto;
 
 @WebServlet("/MVCController")
 public class MVCController extends HttpServlet {
+	
+	public void dispatch(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException {
+		RequestDispatcher dispatch = request.getRequestDispatcher(path);
+		dispatch.forward(request, response);
+	}
+	
 	private static final long serialVersionUID = 1L;
 	MVCBiz biz = new MVCBizImpl();
     public MVCController() {
@@ -42,8 +48,7 @@ public class MVCController extends HttpServlet {
 			
 			request.setAttribute("list", list);
 			
-			RequestDispatcher dispatch = request.getRequestDispatcher("list.jsp");
-			dispatch.forward(request, response);
+			dispatch(request, response, "list.jsp");
 			
 		} else if (command.equals("select")) {
 			
@@ -53,8 +58,7 @@ public class MVCController extends HttpServlet {
 			
 			request.setAttribute("dto", dto);
 			
-			RequestDispatcher dispatch = request.getRequestDispatcher("select.jsp");
-			dispatch.forward(request, response);
+			dispatch(request, response, "select.jsp");
 			
 		} else if (command.equals("insertform")) {
 			
@@ -72,15 +76,16 @@ public class MVCController extends HttpServlet {
 			dto.setContent(content);
 			
 			int res = biz.insert(dto);
+			
 			PrintWriter out = response.getWriter();
 
 			if (res > 0) {
 				
 				String html = 
-				" <script type='text/javascript'> "
-				+ "alert('작성 완료')\n "
-				+ "location.href='controller.do?command=list' "
-				+ "</script> ";
+						" <script type='text/javascript'> "
+						+ "		alert('작성 완료')\n "
+						+ "		location.href='controller.do?command=list' "
+						+ "</script> ";
 				
 				out.println(html);			
 				
@@ -92,7 +97,7 @@ public class MVCController extends HttpServlet {
 						+ "		location.href='controller.do?command=insertform'; "
 						+ "	</script>";
 				
-				out.println(html);	
+				out.println(html);
 			}
 			
 		} else if (command.equals("updateform")) {
@@ -103,9 +108,8 @@ public class MVCController extends HttpServlet {
 			
 			request.setAttribute("dto", dto);
 			
-			RequestDispatcher dispatch = request.getRequestDispatcher("update.jsp");
-			dispatch.forward(request, response);
-			
+			dispatch(request, response, "update.jsp");
+
 		} else if (command.equals("updateres")) {
 			
 			int seq = Integer.parseInt(request.getParameter("seq"));
@@ -124,9 +128,9 @@ public class MVCController extends HttpServlet {
 				
 				String html = 
 						" <script type='text/javascript'> "
-						+ "alert('수정 완료')\n"
-						+ "location.href='controller.do?command=select&seq=" + seq + "';"
-						+ "</script> ";
+						+ "		alert('수정 완료')\n"
+						+ "		location.href='controller.do?command=select&seq=" + seq + "';"
+						+ " </script> ";
 				out.println(html);
 				
 				

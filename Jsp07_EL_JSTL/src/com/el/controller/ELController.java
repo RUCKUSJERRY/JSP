@@ -67,6 +67,10 @@ public class ELController extends HttpServlet {
 			dispatch.forward(request, response);
 			// 리퀘스트 디스페쳐로 위의 속성오브젝트를 jstltest.jsp로 위임(forward)해준다.
 			
+		} else if (command.equals("usebean")) {
+			
+			response.sendRedirect("usebean.jsp");
+			
 		}
 
 	}
