@@ -126,7 +126,6 @@ public class MVCDaoImpl implements MVCDao {
 		int res = 0;
 		
 		
-		
 		try {
 			pstm = con.prepareStatement(UPDATE_SQL);
 			System.out.println("3. query 준비 " + UPDATE_SQL);

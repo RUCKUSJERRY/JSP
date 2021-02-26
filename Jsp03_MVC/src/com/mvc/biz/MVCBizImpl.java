@@ -1,7 +1,9 @@
 package com.mvc.biz;
 
+import java.sql.Connection;
 import java.util.List;
 
+import static com.mvc.db.JDBCTemplate.*;
 import com.mvc.dao.MVCDao;
 import com.mvc.dao.MVCDaoImpl;
 import com.mvc.dto.MVCDto;

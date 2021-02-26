@@ -94,7 +94,7 @@ public class MVCController extends HttpServlet {
 				String html = 
 						" <script type='text/javascript'> "
 						+ "		alert('작성 실패')\n "
-						+ "		location.href='controller.do?command=insertform'; "
+						+ "		location.href='controller.do?command=insertform' "
 						+ "	</script>";
 				
 				out.println(html);
