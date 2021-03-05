@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+	function getParameterValues() {
+		
+		var name = "name="+encodeURIComponent($("#name").val());
+		var kor = "kor="+$("#kor").val();
+		var eng = "eng="+$("#eng").val();
+		var math = "math="+$("#math").val();
+		
+		return "?" + name + "&" + kor + "&" + eng + "&" + math;
+		
+		
+	}
+	
+	$(function(){
+		
+		$("#process").click(function(){
+			var queryString = getParameterValues();
+			//alert(queryString);
+			
+			$.ajax({
+				url: "score.do"+queryString,
+				dataType: "json",
+				success: function(msg){
+					// msg -> {"name":name, "sum":sum, "avg":avg}
+					console.log(msg.name)
+					console.log(msg.sum)
+					console.log(msg.avg)
+					$("#result").html(decodeURIComponent(msg.name) + "의 총점 : " + msg.sum + "\n평균: " + msg.avg);
+				},
+				error: function(){
+					alert("통신 실패");
+				}
+
+			});
+			
+		});
+		
+	});
+
+</script>
+
+
+<body>
+
+	<h1>성적 처리 프로그램</h1>
+	
+	이름 : <input type="text" id="name" /><br/>
+	국어 : <input type="text" id="kor" /><br/>
+	영어 : <input type="text" id="eng" /><br/>
+	수학 : <input type="text" id="math" /><br/>
+	
+	<input type="button" id="process" value="성적처리" /><br/>
+	
+	<div id="result">
+	
+		
+	
+	</div>
+	
+</body>
+</html>
