@@ -14,6 +14,7 @@ function getJsonDate(){
 			method: "post",
 			data: {"command":"getdata", "mydata": JSON.stringify(mydata)},
 			//JSON.stringify() 메서드는 JavaScript 값이나 객체를 JSON 문자열로 변환합니다
+			// mydata:[{k:v},{k:v}...] 으로 JSON객체 문자열로 바꿈
 			dataType: "json",
 			success: function(msg){
 				var $tbody = $("tbody");
