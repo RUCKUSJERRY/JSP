@@ -41,7 +41,7 @@
 						<tr>
 							<td><input type="checkbox" name="chk" value="${dto.seq }" /></td>
 							<td>${dto.seq }</td>
-							<td><a href="">${dto.title }</a></td>
+							<td><a href="cal.do?command=selectone&seq=${dto.seq }">${dto.title }</a></td>
 							<td>
 							<jsp:setProperty property="todates" name="util" value="${dto.mdate }"/>
 							<jsp:getProperty property="todates" name="util"/>
@@ -58,7 +58,7 @@
 			<tr>
 				<td colspan="5">
 					<input type="submit" value="삭제" />
-					<input type="button" value="달력" onclick="cal.do?command=calendar" />
+					<input type="button" value="달력" onclick="location.href='cal.do?command=calendar'" />
 				</td>
 			
 			</tr>

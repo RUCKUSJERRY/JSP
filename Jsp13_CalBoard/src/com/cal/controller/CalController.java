@@ -70,6 +70,55 @@ public class CalController extends HttpServlet {
 			List<CalDto> list = dao.getCalList("kh", yyyyMMdd);
 			request.setAttribute("list", list);
 			dispatch("list.jsp", request, response);
+		} else if (command.equals("selectone")) {
+			
+			int seq = Integer.parseInt(request.getParameter("seq"));
+			
+			CalDto dto = dao.selectOne(seq);
+			
+			request.setAttribute("dto",dto);
+			dispatch("select.jsp", request, response);
+			
+		} else if (command.equals("delete")) {
+			
+			int seq = Integer.parseInt(request.getParameter("seq"));
+			int res = dao.delete(seq);
+			
+			if (res > 0) {
+				response.sendRedirect("calendar.jsp");
+			} else {
+				request.setAttribute("msg", "삭제 실패");
+				dispatch("error.jsp", request, response);
+			}
+		} else if (command.equals("updateform")) {
+			
+			int seq = Integer.parseInt(request.getParameter("seq"));
+			
+			CalDto dto = dao.selectOne(seq);
+			
+			request.setAttribute("dto",dto);
+			dispatch("update.jsp", request, response);
+			 
+		} else if (command.equals("update")) {
+			
+			int seq = Integer.parseInt(request.getParameter("seq"));
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			
+			CalDto dto = new CalDto();
+			dto.setSeq(seq);
+			dto.setTitle(title);
+			dto.setContent(content);
+			
+			int res = dao.update(dto);
+			
+			if (res > 0) {
+				response.sendRedirect("calendar.jsp");
+			} else {
+				request.setAttribute("msg", "수정 실패");
+				dispatch("error.jsp", request, response);
+			}
+			
 		}
 		
 	} catch (Exception e) {

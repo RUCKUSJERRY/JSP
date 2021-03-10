@@ -17,7 +17,8 @@ response.setContentType("text/html; charset=UTF-8");
 </head>
 <body>
 
-	<%
+<%
+
 	int year = Integer.parseInt(request.getParameter("year"));
 	int month = Integer.parseInt(request.getParameter("month"));
 	int date = Integer.parseInt(request.getParameter("date"));
@@ -28,13 +29,12 @@ response.setContentType("text/html; charset=UTF-8");
 	int hour = cal.get(Calendar.HOUR_OF_DAY);
 	int min = cal.get(Calendar.MINUTE);
 	
-	%>
+%>
 
 	<h1> 일정 작성 </h1>
 	
 	<form action="cal.do" method="post">
 		<input type="hidden" name="command" value="insert"/>
-		
 		<table border="1">
 			<tr>
 				<th>ID</th>
