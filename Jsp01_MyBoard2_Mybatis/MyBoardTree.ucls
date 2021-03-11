@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <package id="1" language="java" name="com.board.db" project="Jsp01_MyBoard" file="/Jsp01_MyBoard/src/com/board/db" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="102" x="1074" y="37"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="2" language="java" name="com.board.db.JDBCTemplate" project="Jsp01_MyBoard" 
+    file="/Jsp01_MyBoard/src/com/board/db/JDBCTemplate.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="191" x="45" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="3" language="java" name="com.myboard.biz" project="Jsp01_MyBoard" 
+    file="/Jsp01_MyBoard/src/com/myboard/biz" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="121" x="702" y="37"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <interface id="4" language="java" name="com.myboard.biz.MyBoardBiz" project="Jsp01_MyBoard" 
+    file="/Jsp01_MyBoard/src/com/myboard/biz/MyBoardBiz.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="171" x="863" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <package id="5" language="java" name="com.myboard.dao" project="Jsp01_MyBoard" 
+    file="/Jsp01_MyBoard/src/com/myboard/dao" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="126" x="1427" y="37"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <interface id="6" language="java" name="com.myboard.dao.MyBoardDao" project="Jsp01_MyBoard" 
+    file="/Jsp01_MyBoard/src/com/myboard/dao/MyBoardDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="171" x="1074" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="7" language="java" name="com.myboard.dao.MyBoardDaoImpl" project="Jsp01_MyBoard" 
+    file="/Jsp01_MyBoard/src/com/myboard/dao/MyBoardDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="171" x="1216" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="8" language="java" name="com.myboard.dto" project="Jsp01_MyBoard" 
+    file="/Jsp01_MyBoard/src/com/myboard/dto" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="123" x="276" y="37"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="9" language="java" name="com.myboard.dto.MyBoardDto" project="Jsp01_MyBoard" 
+    file="/Jsp01_MyBoard/src/com/myboard/dto/MyBoardDto.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="369" width="223" x="439" y="37"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.myboard.biz.MyBoardBizImpl" project="Jsp01_MyBoard" 
+    file="/Jsp01_MyBoard/src/com/myboard/biz/MyBoardBizImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="171" x="863" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="11">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <association id="12">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="13" name="dao">        
+        <position height="18" width="26" x="577" y="215"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="15">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

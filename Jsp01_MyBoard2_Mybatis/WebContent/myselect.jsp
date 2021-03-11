@@ -1,4 +1,4 @@
-<%@page import="com.myboard.dao.MyBoardDaoImpl_old"%>
+<%@page import="com.myboard.dao.MyBoardDaoImpl"%>
 <%@page import="com.myboard.dto.MyBoardDto"%>
 <%@page import="com.myboard.dao.MyBoardDao"%>
 <%@page import="com.myboard.biz.MyBoardBizImpl"%>

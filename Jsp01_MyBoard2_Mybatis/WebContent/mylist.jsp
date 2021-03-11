@@ -1,7 +1,7 @@
 <%@page import="com.myboard.biz.MyBoardBizImpl"%>
 <%@page import="com.myboard.biz.MyBoardBiz"%>
 <%@page import="com.myboard.dao.MyBoardDao"%>
-<%@page import="com.myboard.dao.MyBoardDaoImpl_old"%>
+<%@page import="com.myboard.dao.MyBoardDaoImpl"%>
 <%@page import="com.myboard.dto.MyBoardDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

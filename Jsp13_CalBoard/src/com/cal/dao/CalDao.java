@@ -137,6 +137,44 @@ public class CalDao {
 		
 	}
 	
+	public int getCalViewCount(String id, String yyyyMMdd) {
+		
+		Connection con = getConnection();
+		String sql = " SELECT COUNT(*) "
+				   + " FROM CALBOARD "
+				   + " WHERE ID = ? "
+				   + " AND SUBSTR(MDATE, 1, 8) = ? ";
+		
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1, id);
+			pstm.setString(2, yyyyMMdd);
+			System.out.println("3. query 준비 : " + sql);
+			
+			rs = pstm.executeQuery();
+			System.out.println("4. query 실행 및 리턴");
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstm);
+			close(rs);
+			close(con);
+			System.out.println("5. DB 종료");
+		}
+		
+		
+		return count;
+		
+	}
+	
 	public CalDto selectOne(int seq) {
 		
 		Connection con = getConnection();

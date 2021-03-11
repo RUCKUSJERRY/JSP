@@ -47,8 +47,63 @@
 		margin: 1px;
 		background-color: skyblue;
 	}
+	
+	.preview {
+		position: absolute;
+		top: -30px;
+		left: 10px;
+		background-color: skyblue;
+		width: 40px;
+		height: 40px;
+		text-align: center;
+		line-height: 40px;
+		border-radius: 40px 40px 40px 1px;
+	}
 
 </style>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	
+	function isTwo(n) {
+		
+		return (n.length < 2) ? "0" + n : n;
+		
+	}
+	
+	$(function() {
+		$(".countView").hover(function(){
+			// handle in
+			var countView = $(this);
+			var year = $(".y").text().trim();
+			var month = $(".m").text().trim();
+			var date = countView.text().trim();
+			var yyyyMMdd = year + isTwo(month) + isTwo(date);
+			
+			$.ajax({
+				type: "post",
+				url: "count.do?id=kh&yyyyMMdd="+yyyyMMdd,
+				dataType: "json",
+				async: false,
+				success: function(msg){
+					var count = msg.calcount;
+					countView.after("<div class='preview'>" + count + "</div>")
+				},
+				error: function(){
+					alert("통신 실패")
+				}
+				
+			});
+			
+		},
+		function(){
+			// handle out
+			$(".preview").remove();
+		});
+	});
+
+</script>
+
 
 
 
@@ -111,8 +166,8 @@
 			<a href="calendar.jsp?year=<%=year-1%>&month=<%=month%>">◁</a>
 			<a href="calendar.jsp?year=<%=year%>&month=<%=month-1%>">◀</a>
 			
-			<span class=""><%=year %></span>년
-			<span class=""><%=month %></span>월
+			<span class="y"><%=year %></span>년
+			<span class="m"><%=month %></span>월
 			
 			<a href="calendar.jsp?year=<%=year%>&month=<%=month+1%>">▷</a>
 			<a href="calendar.jsp?year=<%=year+1%>&month=<%=month%>">▶</a>
@@ -140,7 +195,7 @@
 		for (int i = 1; i <= lastDay; i++) {
 %>
 			<td>
-				<a href="cal.do?command=list&year=<%=year %>&month=<%=month %>&date=<%=i %>" style="color: <%=Util.fontColor(i, dayOfWeek) %>"><%=i %></a>
+				<a class="countView" href="cal.do?command=list&year=<%=year %>&month=<%=month %>&date=<%=i %>" style="color: <%=Util.fontColor(i, dayOfWeek) %>"><%=i %></a>
 				<a href="insert.jsp?year=<%=year %>&month=<%=month %>&date=<%=i %>&lastDay=<%=lastDay %>">
 					<img alt="" src="image/pen.png" style="width: 10px; height: 10px;">
 				</a>
@@ -156,7 +211,7 @@
 		
 		}
 		
-		// 7-마지막날짜의 요일 만큼 공백을 채워준다.
+		 //7-마지막날짜의 요일 만큼 공백을 채워준다.
 		for (int i = 0; i < (7-(dayOfWeek - 1 + lastDay)%7)%7; i++) {
 			out.print("<td></td>");
 		}
