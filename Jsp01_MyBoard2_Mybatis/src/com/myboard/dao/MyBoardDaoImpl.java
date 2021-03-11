@@ -15,6 +15,7 @@ public class MyBoardDaoImpl extends SqlMapConfig implements MyBoardDao {
 		
 		try {
 			session = getSqlSessionFactory().openSession(true);
+			// 자동커밋을 활성화하기 위해서 autoCommit파라미터에 “true” 값을 설정하라.
 			list = session.selectList("boardmapper.selectList");
 		} catch (Exception e) {
 			e.printStackTrace();
