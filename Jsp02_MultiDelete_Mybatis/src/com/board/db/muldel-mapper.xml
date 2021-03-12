@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.muldel.mapper">
+  
+  <resultMap type="yjDto" id="yjDtoMap">
+  	<result property="seq" column="SEQ" />
+  	<result property="writer" column="WRITER" />
+  	<result property="title" column="TITLE" />
+  	<result property="content" column="CONTENT" />
+  	<result property="regdate" column="REGDATE" /> 
+  </resultMap>
+  
+  
+  <select id="selectList" resultType="yjDto">
+    SELECT SEQ, WRITER, TITLE, CONTENT, REGDATE
+	FROM YJBOARD
+	ORDER BY SEQ DESC
+  </select>
+  
+  <select id="selectOne" parameterType="int" resultMap="yjDtoMap">
+    SELECT SEQ, WRITER, TITLE, CONTENT, REGDATE
+	FROM YJBOARD
+    WHERE SEQ = #{seq}
+  </select>
+  
+  <delete id="multiDelete" parameterType="map" >
+  	DELETE FROM YJBOARD
+  	WHERE SEQ IN
+  	<foreach collection="seqs" item="seq" open="(" separator="," close=")">
+  		#{seq}
+  	</foreach>
+  
+  </delete>
+  
+</mapper>
